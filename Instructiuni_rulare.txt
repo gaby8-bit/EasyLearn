@@ -1,0 +1,184 @@
+================================================================================
+LEARNING HUB - INSTRUCȚIUNI COMPLETE DE RULARE
+================================================================================
+
+CERINȚE MINIME:
+- PHP 8.2+
+- MySQL 8.0+
+- Node.js 18+
+- Composer
+- WAMP server
+================================================================================
+PASUL 0: SETUP INIȚIAL - INSTALARE LARAVEL (DACĂ NU ESTE DEJA FĂCUT)
+================================================================================
+
+1. Dacă nu ai Laravel instalat global, instalează Composer mai întâi:
+   https://getcomposer.org/download/
+
+2. Instalează Laravel CLI (opțional, pentru comenzi mai ușoare):
+   composer global require laravel/installer
+
+3. Creează proiect Laravel nou (dacă nu există deja):
+   laravel new myapp
+   SAU:
+   composer create-project laravel/laravel myapp
+
+4. Navighează în folderul proiectului:
+   cd myapp
+   
+================================================================================
+PASUL 1: INSTALARE DEPENDENȚE
+================================================================================
+
+1. Deschide terminal în folderul aplicației: c:\wamp64\www\myapp
+
+2. Instalează dependențele PHP:
+   composer install
+
+3. Instalează dependențele Node.js:
+   npm install
+
+================================================================================
+PASUL 2: CONFIGURARE FIȘIER .env
+================================================================================
+
+1. Copiază .env.example în .env (dacă nu există deja)
+   cp .env.example .env
+
+2. Generează APP_KEY:
+   php artisan key:generate
+
+3. Configurează baza de date în .env:
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=learning_hub
+   DB_USERNAME=root
+   DB_PASSWORD=
+
+4. Configurează API Key-ul Gemini în .env:
+   GEMINI_API_KEY=YOUR_GOOGLE_GEMINI_API_KEY
+   
+   (Obține cheie de la: https://aistudio.google.com/app/apikeys)
+
+5. Setează SESSION_LIFETIME (în minute):
+   SESSION_LIFETIME=120
+
+================================================================================
+PASUL 3: BAZA DE DATE
+================================================================================
+
+1. Creează baza de date în MySQL:
+   mysql -u root -p
+   CREATE DATABASE learning_hub;
+   EXIT;
+
+2. Rulează migrațiile:
+   php artisan migrate
+
+3. (Opțional) Populează baza cu date de test:
+   php artisan db:seed
+
+================================================================================
+PASUL 4: COMPILARE FRONT-END (Tailwind CSS + Vite)
+================================================================================
+
+1. Compilează assets-uri în mod development:
+   npm run dev
+
+
+================================================================================
+PASUL 5: RULARE SERVER LARAVEL
+================================================================================
+
+1. Pornește serverul Laravel (într-un alt terminal):
+   php artisan serve
+
+2. Serverul va rula pe: http://localhost:8000
+
+================================================================================
+PASUL 6: STRUCTURA FOLDERELOR
+================================================================================
+
+app/Http/Controllers/LearningHubController.php  → Logica procesare documente
+resources/views/learning-hub/index.blade.php   → Interfața Learning Hub
+config/database.php                             → Configurație bază de date
+.env                                            → Variabile de mediu
+storage/                                        → Fișiere încărcate și audio
+database/migrations/                            → Scheme bază de date
+
+================================================================================
+PASUL 7: FUNCȚIONALITĂȚI TESTATE
+================================================================================
+
+Pagina publicului:
+   http://localhost:8000/
+
+Autentificare:
+   http://localhost:8000/register  (înregistrare)
+   http://localhost:8000/login     (conectare)
+
+Learning Hub (doar pentru autentificați):
+   http://localhost:8000/learning-hub
+
+Dashboard:
+   http://localhost:8000/dashboard
+
+Istoric rezultate:
+   http://localhost:8000/learning-hub/history
+
+================================================================================
+PASUL 8: TIPURI DE DOCUMENTE ACCEPTATE
+================================================================================
+
+✓ PDF (.pdf)
+✓ Word (.docx)
+✓ Text (.txt)
+
+Limită: maxim 20MB per fișier
+
+================================================================================
+PASUL 9: TROUBLESHOOTING
+================================================================================
+
+EROARE: "SQLSTATE[HY000]: General error: 1030 Got an error..."
+SOLUȚIE: Verifică că baza de date și tabelele au fost create:
+   php artisan migrate:fresh
+
+EROARE: "GEMINI_API_KEY not configured"
+SOLUȚIE: Verifică că ai setat GEMINI_API_KEY în .env
+
+EROARE: "Audio generation failed"
+SOLUȚIE: Verifica conexiunea la internet și că Google Translate TTS endpoint e accesibil
+
+EROARE: "No application encryption key has been specified"
+SOLUȚIE: Rulează: php artisan key:generate
+
+================================================================================
+PASUL 10: COMENZI UTILE
+================================================================================
+
+Curățare cache:
+   php artisan cache:clear
+
+Resetare bază de date (ATENȚIE - șterge tot!):
+   php artisan migrate:fresh --seed
+
+Verificare de probleme:
+   php artisan tinker
+
+Vizualizare rute:
+   php artisan route:list
+
+================================================================================
+NOTĂ IMPORTANTĂ:
+================================================================================
+
+Asigură-te că:
+- MySQL server este pornit
+- PHP port 8000 este disponibil
+- GEMINI_API_KEY este valid
+- Folderul storage/ are permisiuni de scriere
+- Node.js și npm sunt instalate
+
+================================================================================
