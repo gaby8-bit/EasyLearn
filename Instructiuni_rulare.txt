@@ -8,6 +8,22 @@ CERINȚE MINIME:
 - Node.js 18+
 - Composer
 - WAMP server
+
+## 📍 Adresa Proiectului
+
+```
+Locație locală: c:\wamp64\www\myapp
+URL de rulare: http://localhost:8000
+Rute principale:
+  - / (pagina publică)
+  - /register (înregistrare)
+  - /login (conectare)
+  - /dashboard (panou utilizator)
+  - /learning-hub (aplicația principală)
+  - /learning-hub/history (istoric rezultate)
+```
+
+---
 ================================================================================
 PASUL 0: SETUP INIȚIAL - INSTALARE LARAVEL (DACĂ NU ESTE DEJA FĂCUT)
 ================================================================================
@@ -18,10 +34,9 @@ PASUL 0: SETUP INIȚIAL - INSTALARE LARAVEL (DACĂ NU ESTE DEJA FĂCUT)
 2. Instalează Laravel CLI (opțional, pentru comenzi mai ușoare):
    composer global require laravel/installer
 
-3. Creează proiect Laravel nou (dacă nu există deja):
-   laravel new myapp
-   SAU:
-   composer create-project laravel/laravel myapp
+3. Preia continutul din repository,dacă ai git:
+   git clone <repository-url> myapp
+  
 
 4. Navighează în folderul proiectului:
    cd myapp
@@ -30,7 +45,7 @@ PASUL 0: SETUP INIȚIAL - INSTALARE LARAVEL (DACĂ NU ESTE DEJA FĂCUT)
 PASUL 1: INSTALARE DEPENDENȚE
 ================================================================================
 
-1. Deschide terminal în folderul aplicației: c:\wamp64\www\myapp
+1. Deschide terminalul în folderul aplicației: c:\wamp64\www\myapp
 
 2. Instalează dependențele PHP:
    composer install
@@ -164,11 +179,22 @@ Curățare cache:
 Resetare bază de date (ATENȚIE - șterge tot!):
    php artisan migrate:fresh --seed
 
-Verificare de probleme:
-   php artisan tinker
 
 Vizualizare rute:
    php artisan route:list
+
+
+## ✅ Verificare Instalare
+
+După lansare, testează:
+
+1. **Pagina publică:** http://localhost:8000/ ✓
+2. **Înregistrare:** http://localhost:8000/register ✓
+3. **Conectare:** http://localhost:8000/login ✓
+4. **Dashboard:** http://localhost:8000/dashboard ✓
+5. **Learning Hub:** http://localhost:8000/learning-hub ✓
+
+---
 
 ================================================================================
 NOTĂ IMPORTANTĂ:
