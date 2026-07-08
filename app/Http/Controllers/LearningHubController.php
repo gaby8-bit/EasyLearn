@@ -229,7 +229,7 @@ public function generateAudio(Request $request)
                 $text = substr($text, 0, $maxChars) . '...';
             }
 
-            $prompt = "Acționează ca un expert în educație și design de examinare. Analizează textul furnizat și generează un set de 10 întrebări de tip grilă (multiple choice) pentru a testa cunoștințele studenților.\n\n" .
+            $prompt = "Acționează ca un expert în educație și design de examinare. Analizează textul furnizat și generează un set de 10 întrebări de tip grilă pentru a testa cunoștințele studenților.\n\n" .
                       "IMPORTANT: Răspunde DOAR cu un JSON valid, fără text suplimentar înainte sau după. Formatul JSON trebuie să fie:\n" .
                       "{\n" .
                       "  \"questions\": [\n" .
